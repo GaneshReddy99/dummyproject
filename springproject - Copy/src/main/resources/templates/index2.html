@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8"/>
+<title>Booking Manager</title>
+</head>
+<body>
+<div align="right">
+         <form th:action="@{/logout}" method="post">
+    <input type="submit" value="Sign Out" />
+    </form>
+</div>
+<div align="center">
+    <h1>Booking List</h1>
+    <a href="/new2">Create New Booking</a>
+    <br/><br/>
+    <table border="1" cellpadding="10">
+        <thead>
+            <tr>
+               
+                <th>BOOKING ID</th>
+                <th>CAR ID</th>
+                <th>EMAIL ID</th>
+                <th>BOOKING DATE</th>
+                <th>HOW MANY DAYS</th>
+                <th>STATUS</th>
+                <th>booked_date</th>
+                <th>Actions</th>
+                 
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="booking : ${listBooking}">
+                <td th:text="${booking.Id}">BOOKING ID</td>
+                <td th:text="${booking.car_id}">CAR ID</td>
+                <td th:text="${booking.email_id}">EMAIL ID</td>
+                <td th:text="${booking.booking_date}">BOOKING DATE</td>
+                <td th:text="${booking.many_days}">DAYS</td>
+                <td th:text="${booking.status}">STATUS</td>
+                <td th:text="${booking.booked_date}">STATUS</td>
+                <td>
+                    <a th:href="@{'/edit2/' + ${booking.Id}}">Edit</a>
+                    &nbsp;&nbsp;&nbsp;
+                    <a th:href="@{'/delete2/' + ${booking.Id}}">Delete</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>   
+</body>
+</html>

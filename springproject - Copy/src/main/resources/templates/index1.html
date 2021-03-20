@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Car Manager</title>
+<link rel="stylesheet" type="text/css" href="/webjars/bootstrap/css/bootstrap.min.css" />
+	<script type="text/javascript" src="/webjars/jquery/jquery.min.js"></script>
+	<script type="text/javascript" src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+<style>
+       body{
+        background-color: lightblue;
+       }
+       .he{
+        background-color: #E0FFFF;
+        font-family:Monotype Corsiva;
+        font-size: 30px;
+        height: auto;
+        margin: 5px;
+        padding: 5px;
+        box-shadow: 5px 10px 5px #888888;
+       }
+        .bo {
+        background-color: #E0FFFF;
+        font-size: 20px;
+        height: auto;
+        margin: 10px;
+        padding: 20px;
+        box-shadow: 5px 10px 5px #888888;
+        }
+        a:link {
+			color: green;
+			background-color: transparent;
+			text-decoration: none;
+		}
+		a:visited {
+		color: #008080;
+		background-color: transparent;
+		text-decoration: underline;
+		}
+		a:hover {
+		color: #CD5C5C;
+		background-color: transparent;
+		text-decoration: underline;
+		}
+		a:active {
+		color: yellow;
+		background-color: transparent;
+		text-decoration: underline;
+		}
+    </style>
+</head>
+<body>
+<div align="right">
+         <form th:action="@{/logout}" method="post">
+    <input type="submit" value="Sign Out" />
+    </form>
+</div>
+<div class="container">
+<div class="he" align="center">
+    <h1>List of Car Available</h1>
+    <a href="/new">Add New Car</a>
+    <br/><br/>
+    </div>
+    <div class="bo" align="center">
+    <table border="1" cellpadding="10">
+        <thead>
+            <tr>
+               
+                <th>Car ID</th>
+                <th>Owner Name</th>
+                <th>Car Name</th>
+                <th>Car Type</th>
+                <th>Price</th>
+                <th>Register number</th>
+                <th>Year of Manufacture</th>
+                <th>Color</th>
+                <th>Actions</th>
+                 
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="product : ${listProducts}">
+                <td th:text="${product.car_id}">Car ID</td>
+                <td th:text="${product.name}">Owner Name</td>
+                <td th:text="${product.cname}">Car Name</td>
+                <td th:text="${product.ctype}">Car Type</td>
+                <td th:text="${product.price}">Price</td>
+                <td th:text="${product.rnum}">Register number</td>
+                <td th:text="${product.year}">Price</td>
+                <td th:text="${product.color}">Register number</td>
+                <td>
+                    <a th:href="@{'/edit/' + ${product.car_id}}">Edit</a>
+                    &nbsp;&nbsp;&nbsp;
+                    <a th:href="@{'/delete/' + ${product.car_id}}">Delete</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+</div>   
+</body>
+</html>
